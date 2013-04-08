@@ -1,4 +1,4 @@
-Computing_for_Data_Analysis
+Computing for Data Analysis
 ===========================
 
 Coursera class taught in the R language by Roger D. Peng, Associate Professor at Johns Hopkins University.
