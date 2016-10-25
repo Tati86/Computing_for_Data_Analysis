@@ -1,0 +1,50 @@
+best<- function(state,outcome){
+  
+  ##read outcome data
+  outcome1<-read.csv('outcome-of-care-measures.csv',colClasses='character')
+  
+  state=outcome1[, "State"]
+  Hospital.Name=outcome1[, "Hospital.Name"]
+  heart.attack=outcome1[, 11]
+  heart.failure=outcome1[, 17]
+  pneumonia=outcome1[, 23]
+  my.data=data.frame(state,Hospital.Name,heart.attack, heart.failure,pneumonia)
+  
+
+  ##check that data is valid
+  
+ 
+###outcome= c(heart.attack, heart.failure,pneumonia)
+  bool.state = my.data[, "state"] == state
+  state.data = my.data[bool.state, ]
+  state.data = na.omit(state.data)
+ 
+  
+  if(!state %in% state.data$state){
+    stop("invalid state")
+  } 
+  ###return the hospital name
+  
+  if(outcome == "heart attack"){
+    
+   minrate=min(state.data[,3])
+   x=state.data[which(state.data[,3] == minrate),2]
+  
+  
+   }else if(outcome == "heart failure"){
+    
+     minrate=min(state.data[,4])
+     x=state.data[which(state.data[,4] == minrate),2]
+    
+  }else if (outcome == "pneumonia"){
+  
+    minrate=min(state.data[,5])
+    x=state.data[which(state.data[,5] == minrate),2]
+  } else {
+    stop("invalid outcome")
+  }
+ 
+  
+  
+ return(x)
+}
